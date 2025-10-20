@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>snapshots & stories</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(45deg, #fef9f3 25%, transparent 25%, transparent 75%, #fef9f3 75%, #fef9f3),
+                        linear-gradient(45deg, #fef9f3 25%, transparent 25%, transparent 75%, #fef9f3 75%, #fef9f3);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            background-color: #fff5e6;
+            color: #2c2c2c;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: normal;
+            letter-spacing: -2px;
+            transform: rotate(-2deg);
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotate(-2deg) translateY(0px); }
+            50% { transform: rotate(-2deg) translateY(-10px); }
+        }
+
+        .subtitle {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            letter-spacing: 3px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .photo-entry {
+            background: white;
+            border: 3px solid #2c2c2c;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+            margin: 40px 0;
+            padding: 0;
+            transform: rotate(0deg);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .photo-entry:nth-child(odd) {
+            transform: rotate(-1deg);
+        }
+
+        .photo-entry:nth-child(even) {
+            transform: rotate(1deg);
+        }
+
+        .photo-entry:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 12px 12px 0 rgba(0,0,0,0.15);
+        }
+
+        .photo-wrapper {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-entry:nth-child(2) .photo-wrapper {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .photo-entry:nth-child(3) .photo-wrapper {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .photo-entry:nth-child(4) .photo-wrapper {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .photo-placeholder {
+            animation: spin 20s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .photo-content {
+            padding: 30px;
+        }
+
+        .date {
+            font-size: 0.8em;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+
+        .description {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .tape {
+            position: absolute;
+            width: 100px;
+            height: 30px;
+            background: rgba(255, 255, 200, 0.6);
+            border: 1px solid rgba(0,0,0,0.1);
+            top: -15px;
+            right: 50px;
+            transform: rotate(5deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px 40px;
+            font-size: 0.9em;
+            color: #999;
+        }
+
+        footer::before {
+            content: "~";
+            display: block;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>snapshots & stories</h1>
+        <p class="subtitle">a peculiar collection</p>
+    </header>
+
+    <div class="container">
+        <article class="photo-entry">
+            <div class="tape"></div>
+            <div class="photo-wrapper">
+                <span class="photo-placeholder">📷</span>
+            </div>
+            <div class="photo-content">
+                <div class="date">October 15, 2025</div>
+                <h2>Morning Light Through Dusty Windows</h2>
+                <p class="description">
+                    Found this abandoned greenhouse on the edge of town. The way the morning sun filtered through layers of dust and old glass created these ethereal beams. Sometimes the most beautiful moments happen in the most unexpected places.
+                </p>
+            </div>
+        </article>
+
+        <article class="photo-entry">
+            <div class="tape"></div>
+            <div class="photo-wrapper">
+                <span class="photo-placeholder">🌸</span>
+            </div>
+            <div class="photo-content">
+                <div class="date">October 08, 2025</div>
+                <h2>The Pink Bicycle</h2>
+                <p class="description">
+                    There's a pink bicycle that's been chained to the same pole for three years now. It's become part of the neighborhood's personality. Today someone left flowers in its basket. Community art at its finest.
+                </p>
+            </div>
+        </article>
+
+        <article class="photo-entry">
+            <div class="tape"></div>
+            <div class="photo-wrapper">
+                <span class="photo-placeholder">🌙</span>
+            </div>
+            <div class="photo-content">
+                <div class="date">September 29, 2025</div>
+                <h2>Night Wanderings</h2>
+                <p class="description">
+                    3 AM walks hit different. The city becomes a different creature when everyone's asleep. Caught this shot of the moon playing peek-a-boo behind the old clock tower. My favorite kind of company.
+                </p>
+            </div>
+        </article>
+
+        <article class="photo-entry">
+            <div class="tape"></div>
+            <div class="photo-wrapper">
+                <span class="photo-placeholder">☕</span>
+            </div>
+            <div class="photo-content">
+                <div class="date">September 20, 2025</div>
+                <h2>Coffee Shop Chronicles</h2>
+                <p class="description">
+                    The barista draws a different pattern every day. Today was a cat with an existential crisis. We had a philosophical discussion about latte art and impermanence. Best Tuesday conversation ever.
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        capturing the wonderfully weird moments
+        <br>one frame at a time
+    </footer>
+</body>
+</html>
