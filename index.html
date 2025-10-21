@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>snapshots & stories</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Courier New', monospace;
@@ -23,11 +19,7 @@
             min-height: 100vh;
         }
 
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            position: relative;
-        }
+        header { text-align: center; padding: 40px 20px; position: relative; }
 
         h1 {
             font-size: 3em;
@@ -50,10 +42,7 @@
             letter-spacing: 3px;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        .container { max-width: 900px; margin: 0 auto; }
 
         .photo-entry {
             background: white;
@@ -66,13 +55,8 @@
             position: relative;
         }
 
-        .photo-entry:nth-child(odd) {
-            transform: rotate(-1deg);
-        }
-
-        .photo-entry:nth-child(even) {
-            transform: rotate(1deg);
-        }
+        .photo-entry:nth-child(odd) { transform: rotate(-1deg); }
+        .photo-entry:nth-child(even) { transform: rotate(1deg); }
 
         .photo-entry:hover {
             transform: rotate(0deg) scale(1.02);
@@ -82,40 +66,20 @@
         .photo-wrapper {
             width: 100%;
             height: 400px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4em;
-            color: white;
+            background: #eee;
+            display: block;
             position: relative;
             overflow: hidden;
         }
 
-        .photo-entry:nth-child(2) .photo-wrapper {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        .photo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
-        .photo-entry:nth-child(3) .photo-wrapper {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .photo-entry:nth-child(4) .photo-wrapper {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        }
-
-        .photo-placeholder {
-            animation: spin 20s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .photo-content {
-            padding: 30px;
-        }
+        .photo-content { padding: 30px; }
 
         .date {
             font-size: 0.8em;
@@ -125,16 +89,9 @@
             margin-bottom: 10px;
         }
 
-        h2 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            font-weight: normal;
-        }
+        h2 { font-size: 1.8em; margin-bottom: 15px; font-weight: normal; }
 
-        .description {
-            line-height: 1.6;
-            color: #555;
-        }
+        .description { line-height: 1.6; color: #555; }
 
         .tape {
             position: absolute;
@@ -169,67 +126,73 @@
         <p class="subtitle">a peculiar collection</p>
     </header>
 
-    <div class="container">
-        <article class="photo-entry">
-            <div class="tape"></div>
-            <div class="photo-wrapper">
-                <span class="photo-placeholder">📷</span>
-            </div>
-            <div class="photo-content">
-                <div class="date">October 15, 2025</div>
-                <h2>Morning Light Through Dusty Windows</h2>
-                <p class="description">
-                    Found this abandoned greenhouse on the edge of town. The way the morning sun filtered through layers of dust and old glass created these ethereal beams. Sometimes the most beautiful moments happen in the most unexpected places.
-                </p>
-            </div>
-        </article>
-
-        <article class="photo-entry">
-            <div class="tape"></div>
-            <div class="photo-wrapper">
-                <span class="photo-placeholder">🌸</span>
-            </div>
-            <div class="photo-content">
-                <div class="date">October 08, 2025</div>
-                <h2>The Pink Bicycle</h2>
-                <p class="description">
-                    There's a pink bicycle that's been chained to the same pole for three years now. It's become part of the neighborhood's personality. Today someone left flowers in its basket. Community art at its finest.
-                </p>
-            </div>
-        </article>
-
-        <article class="photo-entry">
-            <div class="tape"></div>
-            <div class="photo-wrapper">
-                <span class="photo-placeholder">🌙</span>
-            </div>
-            <div class="photo-content">
-                <div class="date">September 29, 2025</div>
-                <h2>Night Wanderings</h2>
-                <p class="description">
-                    3 AM walks hit different. The city becomes a different creature when everyone's asleep. Caught this shot of the moon playing peek-a-boo behind the old clock tower. My favorite kind of company.
-                </p>
-            </div>
-        </article>
-
-        <article class="photo-entry">
-            <div class="tape"></div>
-            <div class="photo-wrapper">
-                <span class="photo-placeholder">☕</span>
-            </div>
-            <div class="photo-content">
-                <div class="date">September 20, 2025</div>
-                <h2>Coffee Shop Chronicles</h2>
-                <p class="description">
-                    The barista draws a different pattern every day. Today was a cat with an existential crisis. We had a philosophical discussion about latte art and impermanence. Best Tuesday conversation ever.
-                </p>
-            </div>
-        </article>
-    </div>
+    <div class="container" id="posts"></div>
 
     <footer>
         capturing the wonderfully weird moments
         <br>one frame at a time
     </footer>
+
+    <script>
+        // Change this if your files are .png or .webp
+        const IMG_EXT = 'jpg';
+
+        // Helper to build the encoded path for filenames with spaces/parentheses
+        const imgPath = (i) => `images/blog%20(${i}).${IMG_EXT}`;
+
+        // Fill in (or edit) titles/descriptions/dates as you like.
+        // I preserved your first four; the rest are placeholders.
+        const posts = [
+          {
+            img: imgPath(1),
+            date: 'October 15, 2025',
+            title: 'Morning Light Through Dusty Windows',
+            desc: 'Found this abandoned greenhouse on the edge of town. The way the morning sun filtered through layers of dust and old glass created these ethereal beams. Sometimes the most beautiful moments happen in the most unexpected places.'
+          },
+          {
+            img: imgPath(2),
+            date: 'October 08, 2025',
+            title: 'The Pink Bicycle',
+            desc: "There\'s a pink bicycle that\'s been chained to the same pole for three years now. It\'s become part of the neighborhood\'s personality. Today someone left flowers in its basket. Community art at its finest."
+          },
+          {
+            img: imgPath(3),
+            date: 'September 29, 2025',
+            title: 'Night Wanderings',
+            desc: '3 AM walks hit different. The city becomes a different creature when everyone\'s asleep. Caught this shot of the moon playing peek-a-boo behind the old clock tower. My favorite kind of company.'
+          },
+          {
+            img: imgPath(4),
+            date: 'September 20, 2025',
+            title: 'Coffee Shop Chronicles',
+            desc: 'The barista draws a different pattern every day. Today was a cat with an existential crisis. We had a philosophical discussion about latte art and impermanence. Best Tuesday conversation ever.'
+          },
+          // Five more images; edit titles/descriptions later if you want.
+          { img: imgPath(5), date: '—', title: 'Snapshot #5', desc: '' },
+          { img: imgPath(6), date: '—', title: 'Snapshot #6', desc: '' },
+          { img: imgPath(7), date: '—', title: 'Snapshot #7', desc: '' },
+          { img: imgPath(8), date: '—', title: 'Snapshot #8', desc: '' },
+          { img: imgPath(9), date: '—', title: 'Snapshot #9', desc: '' },
+        ];
+
+        const container = document.getElementById('posts');
+
+        posts.forEach((p, idx) => {
+          const article = document.createElement('article');
+          article.className = 'photo-entry';
+          article.innerHTML = `
+            <div class="tape"></div>
+            <a class="photo-wrapper" href="${p.img}" target="_blank" rel="noopener">
+              <img src="${p.img}" alt="${p.title || 'snapshot'}" loading="lazy">
+            </a>
+            <div class="photo-content">
+                <div class="date">${p.date || ''}</div>
+                <h2>${p.title || ''}</h2>
+                <p class="description">${p.desc || ''}</p>
+            </div>
+          `;
+          container.appendChild(article);
+        });
+    </script>
 </body>
 </html>
